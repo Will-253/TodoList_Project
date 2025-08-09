@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View A Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #17a2b8;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #17a2b8;
+            width: 50%;
+            margin: 10px auto 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            box-shadow: inset 0px 1px 3px rgba(0,0,0,0.05);
+        }
+
+        span {
+            font-weight: bold;
+            color: #17a2b8;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #17a2b8;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1 align="center">View Task</h1>
+  <hr>
+    <h2 align="center">⬇️</h2>
+    <div th:action="@{/viewatask}" th:object="${taskModel}" align="center">
+        <p>Task ID: <span th:text="${taskModel.id}"></span></p>
+        <p>Task Description: <span th:text="${taskModel.description}"></span></p>
+        <p>Task Completed: <span th:text="${taskModel.completed}"></span></p>
+    </div>
+
+    <a th:href="@{/tasks}" class="btn">Return to Task List</a>
+</div>
+</body>
+</html>

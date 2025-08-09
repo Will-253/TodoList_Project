@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All ToDo Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #17a2b8;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #fce5cd;
+        }
+        tr:hover {
+            background-color: cornsilk;
+        }
+        a.button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+        }
+        a.delete {
+            background-color: red;
+        }
+        a.update {
+            background-color: #17a2b8;
+        }
+        .button {
+            background-color: #17a2b8;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #138496;
+        }
+    </style>
+</head>
+<body bgcolor="#f0ffff">
+<p><a th:href="@{/newtaskform}"
+      style="background-color: #17a2b8;
+              color: white;
+              padding: 10px 15px;
+              text-decoration: floralwhite;
+              border-radius: 5px;
+              font-weight: bold;">➕Create New Task</a></p>
+
+<div align="center">
+    <h1>To Do List</h1>
+    <table border="1" bgcolor="#fffaf0" class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Completed</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task, taskStat : ${allTasks}">
+            <td th:text="${taskStat.count}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.completed}"></td>
+            <td>
+                <a th:href="@{/deletetask/{id}(id=${task.id})}" class="button delete">Delete</a>
+                <a th:href="@{/updatetaskform/{id}(id=${task.id})}" class="button update">Update</a>
+                <a th:href="@{/viewATask/{id}(id=${task.id})}" class="button">View Task</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
